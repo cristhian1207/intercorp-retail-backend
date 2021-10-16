@@ -18,7 +18,7 @@ import com.intercorpretail.customers.service.ICustomerService;
 
 @RestController
 @RequestMapping("/customers")
-@CrossOrigin(origins= {"http://localhost:3000"})
+@CrossOrigin(origins= {"http://cmcl-intercorp-retail-reto.s3-website.us-east-2.amazonaws.com"})
 public class CustomerController {
 
 	@Autowired
