@@ -14,6 +14,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.Formula;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name="CUSTOMERS")
 public class Customer {
@@ -34,9 +36,11 @@ public class Customer {
 	private Date birthday;
 
 	@Formula("f_current_year_diff(BIRTHDAY)")
+	@Schema(accessMode = Schema.AccessMode.READ_ONLY)
 	private Integer age;
 
 	@Transient
+	@Schema(accessMode = Schema.AccessMode.READ_ONLY)
 	private Date deathDate;
 
 	public Customer() { }

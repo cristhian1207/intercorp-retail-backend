@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,14 +18,16 @@ import com.intercorpretail.customers.service.ICustomerService;
 
 @RestController
 @RequestMapping("/customers")
+@CrossOrigin(origins= {"http://localhost:3000"})
 public class CustomerController {
 
 	@Autowired
 	private ICustomerService customerService;
 
 	@PostMapping("/creacliente")
-	public Customer save(@RequestBody Customer customer) {
-		return this.customerService.save(customer);
+	public ResponseEntity<Customer> save(@RequestBody Customer customer) {
+		Customer customerSaved = this.customerService.save(customer); 
+		return new ResponseEntity<>(customerSaved, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/kpideclientes")
